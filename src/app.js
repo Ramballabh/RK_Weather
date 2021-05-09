@@ -1,20 +1,26 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const hbs = require('hbs');
 
-const static_path = path.join(__dirname,"../public/");
-app.use(express.static(static_path));
+const template_path = path.join(__dirname,"../templates/views");
+const partial_path = path.join(__dirname,"../templates/partials");
+
+
+app.set("view engine", 'hbs');
+app.set('views',template_path);
+hbs.registerPartials(partial_path);
 
 app.get("",(req,res)=>{
-    res.send("Welcome to RK Tech");
+    res.render('index.hbs');
 });
 
 app.get("/about",(req,res)=>{
-    res.send("Welcome to about page");
+    res.render('about.hbs');
 });
 
 app.get("*",(req,res)=>{
-    res.send("404 Page");
+    res.render('404.hbs');
 })
 
 app.listen(3000,()=>{
