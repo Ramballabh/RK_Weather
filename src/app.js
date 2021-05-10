@@ -12,15 +12,15 @@ app.set('views',template_path);
 hbs.registerPartials(partial_path);
 
 app.get("",(req,res)=>{
-    res.render('index.hbs');
+    res.render('index');
 });
 
 app.get("/about",(req,res)=>{
-    res.render('about.hbs');
+    res.render('about');
 });
 
 app.get("*",(req,res)=>{
-    res.render('404.hbs');
+    res.render('404');
 })
 
 app.listen(3000,()=>{
